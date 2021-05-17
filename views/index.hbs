@@ -1,7 +1,10 @@
-{{!-- <form action="/" method="POST"> --}}
-  <div class="input-group mt-1 mx-auto" style="width:60%;">
-    <input type="text" class="form-control" placeholder="Input URL here" name="originalURL">
-    <button class="btn btn-outline-dark" type="submit">Shorten</button>
+<form action="/" method="POST">
+  <div class="input-group my-3 mx-auto" style="width:60%;">
+    {{!-- --}}
+    <input type="text" class="form-control" placeholder="Input URL here" name="originUrl">
+    <div class="input-group-append">
+      <button class="btn btn-outline-dark" type="submit">Shorten</button>
+    </div>
   </div>
-  {{!--
-</form> --}}
+
+</form>

@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "originUrl": "https://www.google.com",
+      "path": "12345"
+    },
+    {
+      "originUrl": "https://www.facebook.com",
+      "path": "qwert"
+    },
+    {
+      "originUrl": "https://www.youtube.com",
+      "path": "asdfg"
+    }
+  ]
+}
