@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
   const { originUrl } = req.body
   let newUrl
   const arr = []
-  const baseUrl = 'http://localhost:3000'
+  const baseUrl = process.env.NODE_ENV ? 'https://quiet-ridge-81886.herokuapp.com' : 'http://localhost:3000'
   const pattern = /^http:\/\/|https:\/\/|www\..{1,}\.com$/
 
   if (originUrl === '' || originUrl === undefined) {
