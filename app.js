@@ -18,7 +18,7 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const Url = require('./models/url')
-const randomPath = require('./utils')
+const { randomPath } = require('./utils')
 
 app.get('/', (req, res) =>
   res.render('index')
@@ -28,16 +28,27 @@ app.post('/', (req, res) => {
   let newUrl
   const arr = []
   const baseUrl = 'http://localhost:3000'
+  const pattern = /^http:\/\/|https:\/\/|www\..{1,}\.com$/
+
+  if (originUrl === '' || originUrl === undefined) {
+    let msg = '請輸入網址！'
+    return res.render('index', { originUrl: msg })
+  } else if (!originUrl.match(pattern)) {
+    msg = '網址輸入錯誤'
+    return res.render('index', { originUrl: msg })
+  }
+
   Url.find()
     .lean()
     .then((urls) => {
       urls.find(url => {
         if (url.originUrl === originUrl) {
           arr.push(url)
+          return newUrl = `${baseUrl}/${url.path}`
         }
       })
       if (arr.length === 0) {
-        const path = randomPath(5)
+        let path = randomPath(5)
         Url.create({
           originUrl: originUrl,
           path: path
@@ -46,11 +57,7 @@ app.post('/', (req, res) => {
       }
     })
     .then(() => {
-      if (originUrl.match(/^http:\/\/|https:\/\//)) {
-        res.render('results', { newUrl, originUrl })
-      } else {
-        res.render('results', { newUrl, url: `http://${originUrl}` })
-      }
+      res.render('results', { newUrl, originUrl })
     })
     .catch(err => {
       console.log(err)

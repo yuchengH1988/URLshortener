@@ -9,4 +9,4 @@ function randomPath(length) {
   return path
 }
 
-module.exports = randomPath
+module.exports = { randomPath }
