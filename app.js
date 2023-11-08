@@ -6,8 +6,6 @@ require('./config/mongodb.js')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-
-// const PORT = process.env.PORT || 3000
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
